@@ -17,7 +17,7 @@ class LocationSteps() {
     
     @When("^I get the ZIP code$")
     def i_get_the_ZIP_code() {
-        location.zipCode
+        location.getZipCode
     }
     
     @Then("^ZIP code should be blank$")
