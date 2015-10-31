@@ -9,10 +9,11 @@ import org.junit.runner.RunWith;
     monochrome = true,
     dryRun = false,
     strict = true,
-    format = { "pretty" },
+    plugin = { "pretty" },
     glue = "com.u14n.sandbox.model",
     features = {
-            "classpath:com/u14n/sandbox/model/address.feature"
+        "classpath:com/u14n/sandbox/model/address.feature",
+        "classpath:com/u14n/sandbox/model/dao.feature"
     },
     tags = {"~@ignore"}
 )

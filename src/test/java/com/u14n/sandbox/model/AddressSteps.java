@@ -22,13 +22,13 @@ public class AddressSteps {
 
 	@Given("^I have a new address$")
 	public void i_have_a_new_address() throws Throwable {
-		address = new Address();
+		this.address = new Address();
 		assertNotNull(address);
 	}
 
 	@When("^I get the additional$")
 	public void i_get_the_additional() throws Throwable {
-		address.getAdditional();
+		this.address.getAdditional();
 	}
 
 	@Then("^the additional should be blank$")
@@ -62,7 +62,7 @@ public class AddressSteps {
 		//System.out.println("AddressSteps.serial_version_UID_should_be() expected=" + expected);
 		expected += arg4;
 		//System.out.println("AddressSteps.serial_version_UID_should_be() expected=" + expected);
-		long actual = ObjectStreamClass.lookup(Address.class).getSerialVersionUID();
+		long actual = ObjectStreamClass.lookup(this.address.getClass()).getSerialVersionUID();
 		assertEquals(expected, actual);
 	}
 }
