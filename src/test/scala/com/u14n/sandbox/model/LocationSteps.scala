@@ -94,4 +94,14 @@ class LocationSteps() {
   def identifier_should_be(arg1: Int) {
     assertEquals(arg1, identifier)
   }
+
+  @Then("^it should be self-equaling$")
+  def it_should_be_self_equaling() {
+    val newLocation = new Location(location)
+    assertTrue(newLocation.equals(location));
+    assertTrue(location.equals(newLocation));
+    assertTrue(newLocation == location);
+    assertTrue(location == newLocation);
+    assertEquals(location.hashCode(), newLocation.hashCode());
+  }
 }

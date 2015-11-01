@@ -15,6 +15,7 @@ Feature: Location
     And city should be ""
     And street should be ""
     And identifier should be 115856201
+    And it should be self-equaling
 
   Scenario: Red Hat Amphitheater
     Given I have the Red Hat Amphitheater location
@@ -30,3 +31,4 @@ Feature: Location
     And city should be "Raleigh"
     And street should be "500 S McDowell St"
     And identifier should be -760791817
+    And it should be self-equaling

@@ -20,6 +20,13 @@ class Location(
   def this() {
     this("", "", "", "", "")
   }
+  def this(that: Location) {
+    this(that.countryCode,
+      that.regionCode,
+      that.zipCode,
+      that.city,
+      that.street)
+  }
 
   override def getIdentifier(): Integer = hashCode()
 
