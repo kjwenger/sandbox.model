@@ -17,8 +17,8 @@ public interface DAOProtocol<T, U> {
 	 * @return
 	 * @throws DAOException
 	 */
-	default List<T> findById(U id) throws DAOException {
-		return Collections.emptyList();
+	default T findById(U id) throws DAOException {
+		return null;
 	}
 
 	/**

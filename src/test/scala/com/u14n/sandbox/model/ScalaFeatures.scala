@@ -12,7 +12,8 @@ import org.junit.runner.RunWith
     format = Array[String]("pretty"),
     glue = Array[String]("com.u14n.sandbox.model"),
     features = Array[String](
-        "classpath:com/u14n/sandbox/model/location.feature"
+        "classpath:com/u14n/sandbox/model/location.feature",
+        "classpath:com/u14n/sandbox/model/location_dao.feature"
     ),
     tags = Array[String]("~@ignore")
 )
