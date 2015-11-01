@@ -2,6 +2,7 @@ package com.u14n.sandbox.model;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public interface DAOProtocol<T, U> {
 	/**
@@ -69,5 +70,55 @@ public interface DAOProtocol<T, U> {
 	 */
 	default T delete(T t) throws DAOException {
 		return t;
+	}
+
+	static class ConcurrentMemory<T, U> implements DAOProtocol<T, U> {
+		private CopyOnWriteArrayList<T> list = new CopyOnWriteArrayList<T>();
+
+		/**
+		 * @param t
+		 * @throws DAOException
+		 */
+		@Override
+		public T insert(T t) throws DAOException {
+			if (list.addIfAbsent(t)) {
+				return t;
+			}
+			throw new DAOException(
+					new RuntimeException("Cannot insert over existing"));
+		}
+		/**
+		 * @return
+		 * @throws DAOException
+		 */
+		@Override
+		public List<T> findAll() throws DAOException {
+			return list;
+			
+		}
+		/**
+		 * @param t
+		 * @throws DAOException
+		 */
+		@Override
+		public T update(T t) throws DAOException {
+			if (list.contains(t)) {
+				return t;
+			}
+			throw new DAOException(
+					new RuntimeException("Cannot update non-existing"));
+		}
+		/**
+		 * @param t
+		 * @throws DAOException
+		 */
+		@Override
+		public T delete(T t) throws DAOException {
+			if (list.remove(t)) {
+				return t;
+			}
+			throw new DAOException(
+					new RuntimeException("Cannot remove non-existing"));
+		}
 	}
 }

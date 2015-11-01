@@ -48,4 +48,3 @@ Feature: Location
     And street should be "100 E Davie St"
     And id should be 1370790227
     And it should be self-equaling
-    

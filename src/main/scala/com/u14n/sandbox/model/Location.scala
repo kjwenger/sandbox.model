@@ -1,10 +1,12 @@
 package com.u14n.sandbox.model
 
 import scala.beans.BeanProperty
+import javax.xml.bind.annotation.XmlRootElement
 
 /**
  * @author ${user.name}
  */
+@XmlRootElement
 class Location(
   @BeanProperty var countryCode: String, 
   @BeanProperty var regionCode: String, 

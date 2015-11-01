@@ -2,10 +2,13 @@ package com.u14n.sandbox.model;
 
 import java.io.Serializable;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 /**
  * @author Klaus Wenger
  *
  */
+@XmlRootElement
 public class Address extends Location implements Serializable {
 	/**
 	 * 
@@ -15,8 +18,8 @@ public class Address extends Location implements Serializable {
 
 	public Address(
 			String countryCode,
-			String zipCode,
 			String regionCode,
+			String zipCode,
 			String city,
 			String street,
 			String additional) {
