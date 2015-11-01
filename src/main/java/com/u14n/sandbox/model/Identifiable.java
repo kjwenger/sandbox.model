@@ -11,5 +11,5 @@ public interface Identifiable<U> {
 	/**
 	 * @return
 	 */
-	default U getIdentifier() { return null; }
+	default U getId() { return null; }
 }

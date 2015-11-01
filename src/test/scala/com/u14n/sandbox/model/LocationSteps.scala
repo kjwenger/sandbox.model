@@ -16,12 +16,18 @@ class LocationSteps() {
     "27601",
     "Raleigh",
     "500 S McDowell St")
+  var redHatHeadquarters: Location = new Location(
+    "USA",
+    "NC",
+    "27601",
+    "Raleigh",
+    "100 E Davie St")
   var countryCode: String = _
   var regionCode: String = _
   var zipCode: String = _
   var city: String = _
   var street: String = _
-  var identifier: Int = _
+  var id: Int = _
 
   @Given("^I have a new location$")
   def i_have_a_new_location() {
@@ -32,6 +38,12 @@ class LocationSteps() {
   @Given("^I have the Red Hat Amphitheater location$")
   def i_have_the_Red_Hat_Amphitheater_location() {
     location = redHatAmphitheater
+    assertNotNull(location)
+  }
+
+  @Given("^I have the Red Hat Headquarters location$")
+  def i_have_the_Red_Hat_Headquarters_location() {
+    location = redHatHeadquarters
     assertNotNull(location)
   }
 
@@ -60,9 +72,9 @@ class LocationSteps() {
     street = location.getStreet
   }
 
-  @When("^I get the identifier$")
-  def i_get_the_identifier() {
-    identifier = location.getIdentifier
+  @When("^I get the id$")
+  def i_get_the_id() {
+    id = location.getId
   }
 
   @Then("^country code should be \"([^\"]*)\"$")
@@ -90,9 +102,9 @@ class LocationSteps() {
     assertEquals(arg1, street)
   }
 
-  @Then("^identifier should be (-?\\d+)$")
-  def identifier_should_be(arg1: Int) {
-    assertEquals(arg1, identifier)
+  @Then("^id should be (-?\\d+)$")
+  def id_should_be(arg1: Int) {
+    assertEquals(arg1, id)
   }
 
   @Then("^it should be self-equaling$")

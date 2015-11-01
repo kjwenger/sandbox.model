@@ -8,7 +8,7 @@ public interface DAOProtocol<T, U> {
 	 * @param t
 	 * @throws DAOException
 	 */
-	default T insert(final T t) throws DAOException {
+	default T insert(T t) throws DAOException {
 		return t;
 	}
 
@@ -17,12 +17,24 @@ public interface DAOProtocol<T, U> {
 	 * @return
 	 * @throws DAOException
 	 */
-	default T findById(U id) throws DAOException {
-		return findAll().stream()
-				.filter(t -> t.hashCode() == id.hashCode())
+	default T findById(final U id) throws DAOException {
+		/* trace */ System.out.println("DAOProtocol.findById() id.hashCode()=" + id.hashCode());
+		List<T> all = findAll();
+		/* trace */ System.out.println("DAOProtocol.findById() all.size()=" + all.size());
+		return all.stream()
+				.filter(t -> {
+					/* trace */ System.out.println("DAOProtocol.findById() findAll().stream().filter() t.hashCode()=" + t.hashCode());
+					return t.hashCode() == id.hashCode(); })
 				.findFirst()
-				.orElseThrow(() -> new DAOException(
-						new RuntimeException("Not found")));
+				.orElseThrow(() -> all.isEmpty()
+					? new DAOException(
+						new RuntimeException(
+							String.format("Not found id %d in %d",
+								id.hashCode(), all.size())))
+					: new DAOException(
+						new RuntimeException(
+							String.format("Not found id %d", id.hashCode()),
+							new RuntimeException("Empty"))));
 	}
 
 	/**
@@ -30,7 +42,7 @@ public interface DAOProtocol<T, U> {
 	 * @return
 	 * @throws DAOException
 	 */
-	default List<T> findByName(String name) throws DAOException {
+	default List<T> findByName(final String name) throws DAOException {
 		return Collections.emptyList();
 	}
 
@@ -39,6 +51,7 @@ public interface DAOProtocol<T, U> {
 	 * @throws DAOException
 	 */
 	default List<T> findAll() throws DAOException {
+		/* trace */ System.out.println("DAOProtocol.findAll()");
 		return Collections.emptyList();
 	}
 

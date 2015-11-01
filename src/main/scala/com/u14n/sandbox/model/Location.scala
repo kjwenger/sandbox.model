@@ -28,7 +28,7 @@ class Location(
       that.street)
   }
 
-  override def getIdentifier(): Integer = hashCode()
+  override def getId(): Integer = hashCode()
 
   override def getRevision(): Integer = revision
   override def setRevision(newRevision: Integer) { revision = newRevision }

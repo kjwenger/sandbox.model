@@ -19,17 +19,17 @@ trait DAOTrait[T, U] extends DAOProtocol[T, U] {
    */
   @throws(classOf[DAOException])
   override def insert(t: T): T = { return t }
-  /**
-   * @param id
-   * @return
-   * @throws DAOException
-   */
-  @throws(classOf[DAOException])
-  override def findById(id: U): T = {
-    throw new DAOException(
-      new RuntimeException("Not Found",
-        new RuntimeException("Empty")))
-  }
+//  /**
+//   * @param id
+//   * @return
+//   * @throws DAOException
+//   */
+//  @throws(classOf[DAOException])
+//  override def findById(id: U): T = {
+//    throw new DAOException(
+//      new RuntimeException("Not Found",
+//        new RuntimeException("Empty")))
+//  }
   /**
    * @param name
    * @return
