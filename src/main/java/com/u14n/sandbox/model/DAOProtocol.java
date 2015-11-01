@@ -18,7 +18,11 @@ public interface DAOProtocol<T, U> {
 	 * @throws DAOException
 	 */
 	default T findById(U id) throws DAOException {
-		return null;
+		return findAll().stream()
+				.filter(t -> t.hashCode() == id.hashCode())
+				.findFirst()
+				.orElseThrow(() -> new DAOException(
+						new RuntimeException("Not found")));
 	}
 
 	/**

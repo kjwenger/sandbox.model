@@ -13,14 +13,19 @@ public class Address extends Location implements Serializable {
 	//                                           major minor micro build
 	private static final long serialVersionUID = 0x0001_0000_0000_0000L;
 
-	public Address(String zipCode,
+	public Address(
+			String countryCode,
+			String zipCode,
+			String regionCode,
+			String city,
+			String street,
 			String additional) {
-		super(zipCode);
+		super(countryCode, regionCode, zipCode, city, street);
 		this.additional = additional;
 	}
 
 	public Address() {
-		this("", "");
+		this("", "", "", "", "", "");
 	}
 
 	public String getAdditional() {
