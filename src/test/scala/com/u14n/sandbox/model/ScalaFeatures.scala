@@ -10,10 +10,10 @@ import org.junit.runner.RunWith
     dryRun = false,
     strict = true,
     format = Array[String]("pretty"),
-    glue = Array[String]("com.u14n.sandbox.model"),
+    glue = Array[String]("com.u14n.sandbox.model.geography"),
     features = Array[String](
-        "classpath:com/u14n/sandbox/model/location.feature",
-        "classpath:com/u14n/sandbox/model/location_dao.feature"
+        "classpath:com/u14n/sandbox/model/geography/location.feature",
+        "classpath:com/u14n/sandbox/model/geography/location_dao.feature"
     ),
     tags = Array[String]("~@ignore")
 )

@@ -1,11 +1,9 @@
-package com.u14n.sandbox.model
+package com.u14n.sandbox.model.geography
 
-import org.junit.Test
 import org.junit.Assert._
 import cucumber.api.java.en.Given
 import cucumber.api.java.en.Then
 import cucumber.api.java.en.When
-import cucumber.api.PendingException
 
 class LocationDAOSteps() {
   var location: Location = new Location();
@@ -26,7 +24,7 @@ class LocationDAOSteps() {
    */
   @Then("^the new Location should have been inserted$")
   def the_new_Location_should_have_been_inserted() {
-    // TODO      assertEquals(location, locationDAO.findById(location));
+    // TODO      assertEquals(location, locationDAO.findByIdentity(location));
   }
 
   @When("^I delete the new Location from the Location DAO$")
@@ -39,6 +37,6 @@ class LocationDAOSteps() {
    */
   @Then("^the new Location should have been deleted$")
   def the_new_Location_should_have_been_deleted() {
-    // TODO      locationDAO.findById(location);
+    // TODO      locationDAO.findByIdentity(location);
   }
 }

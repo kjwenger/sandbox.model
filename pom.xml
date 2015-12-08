@@ -1,88 +1,63 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+		                    http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.u14n</groupId>
+		<artifactId>sandbox</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+	</parent>
 	<groupId>com.u14n</groupId>
 	<artifactId>sandbox.model</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>${project.artifactId}</name>
 	<description>Generic Model</description>
-	<inceptionYear>2015</inceptionYear>
-	<licenses>
-		<license>
-			<name>My License</name>
-			<url>http://....</url>
-			<distribution>repo</distribution>
-		</license>
-	</licenses>
-	<properties>
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<java.version>1.8</java.version>
-		<maven.compiler.source>1.8</maven.compiler.source>
-		<maven.compiler.target>1.8</maven.compiler.target>
-		<encoding>UTF-8</encoding>
-		<scala.version>2.11.5</scala.version>
-		<scala.compat.version>2.11</scala.compat.version>
-	</properties>
+	<url>https://github.com/kjwenger/${project.artifactId}</url>
+	<scm>
+		<url>${project.url}</url>
+		<connection>scm:git:git://github.com/kjwenger/${project.artifactId}.git</connection>
+		<developerConnection>scm:git:git@github.com:kjwenger/${project.artifactId}.git</developerConnection>
+	</scm>
+	<issueManagement>
+		<url>${project.url}/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
 	<dependencies>
-		<!-- Build -->
+		<!-- persistence dependencies -->
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+		</dependency>
+		<!-- compiler dependencies -->
 		<dependency>
 			<groupId>org.scala-lang</groupId>
 			<artifactId>scala-library</artifactId>
-			<version>${scala.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.specs2</groupId>
-			<artifactId>specs2-core_${scala.compat.version}</artifactId>
-			<version>2.4.16</version>
-			<scope>test</scope>
-		</dependency>
-		<!-- Test -->
-		<!-- dependency>
+		<!-- test dependencies -->
+		<!-- <dependency>
 			<groupId>info.cukes</groupId>
-			<artifactId>cucumber-scala</artifactId>
-			<version>1.2.3</version>
-			<scope>test</scope>
-		</dependency -->
+			<artifactId>cucumber-scala</artifactId> 
+		</dependency> -->
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-java</artifactId>
-			<version>1.2.3</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>info.cukes</groupId>
 			<artifactId>cucumber-junit</artifactId>
-			<version>1.2.3</version>
-			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.12</version>
-			<scope>test</scope>
+			<groupId>org.specs2</groupId>
+			<artifactId>specs2-core_${scala.compat.version}</artifactId>
 		</dependency>
-		<!-- dependency>
+		<dependency>
 			<groupId>org.scalatest</groupId>
 			<artifactId>scalatest_${scala.compat.version}</artifactId>
-			<version>2.2.4</version>
-			<scope>test</scope>
-		</dependency -->
+		</dependency>
 	</dependencies>
 	<build>
-		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>net.alchim31.maven</groupId>
-					<artifactId>scala-maven-plugin</artifactId>
-					<version>3.2.1</version>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.2</version>
-				</plugin>
-			</plugins>
-		</pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>net.alchim31.maven</groupId>
@@ -91,6 +66,11 @@
 					<execution>
 						<id>scala-compile-first</id>
 						<phase>process-resources</phase>
+						<configuration>
+							<args>
+								<arg>-Xexperimental</arg>
+							</args>
+						</configuration>
 						<goals>
 							<goal>add-source</goal>
 							<goal>compile</goal>
@@ -99,6 +79,11 @@
 					<execution>
 						<id>scala-test-compile</id>
 						<phase>process-test-resources</phase>
+						<configuration>
+							<args>
+								<arg>-Xexperimental</arg>
+							</args>
+						</configuration>
 						<goals>
 							<goal>testCompile</goal>
 						</goals>
@@ -107,20 +92,7 @@
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>compile</phase>
-						<goals>
-							<goal>compile</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.18.1</version>
 				<configuration>
 					<useFile>false</useFile>
 					<disableXmlReport>true</disableXmlReport>

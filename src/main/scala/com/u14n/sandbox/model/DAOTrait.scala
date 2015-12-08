@@ -19,26 +19,6 @@ trait DAOTrait[T, U] extends DAOProtocol[T, U] {
    */
   @throws(classOf[DAOException])
   override def insert(t: T): T = { return t }
-//  /**
-//   * @param id
-//   * @return
-//   * @throws DAOException
-//   */
-//  @throws(classOf[DAOException])
-//  override def findById(id: U): T = {
-//    throw new DAOException(
-//      new RuntimeException("Not Found",
-//        new RuntimeException("Empty")))
-//  }
-  /**
-   * @param name
-   * @return
-   * @throws DAOException
-   */
-  @throws(classOf[DAOException])
-  override def findByName(name: String): List[T] = {
-    return Collections.emptyList[T]
-  }
   /**
    * @return
    * @throws DAOException

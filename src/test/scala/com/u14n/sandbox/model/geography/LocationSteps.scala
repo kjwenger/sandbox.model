@@ -1,11 +1,9 @@
-package com.u14n.sandbox.model
+package com.u14n.sandbox.model.geography
 
-import org.junit.Test
 import org.junit.Assert._
 import cucumber.api.java.en.Given
 import cucumber.api.java.en.Then
 import cucumber.api.java.en.When
-import cucumber.api.PendingException
 
 class LocationSteps() {
   var location: Location = _
@@ -15,19 +13,22 @@ class LocationSteps() {
     "NC",
     "27601",
     "Raleigh",
-    "500 S McDowell St")
+    "S McDowell St",
+    "500")
   var redHatHeadquarters: Location = new Location(
     "USA",
     "NC",
     "27601",
     "Raleigh",
-    "100 E Davie St")
+    "E Davie St",
+    "100")
   var countryCode: String = _
   var regionCode: String = _
-  var zipCode: String = _
+  var postalCode: String = _
   var city: String = _
   var street: String = _
-  var id: Int = _
+  var number: String = _
+  var id: Long = _
 
   @Given("^I have a new location$")
   def i_have_a_new_location() {
@@ -57,9 +58,9 @@ class LocationSteps() {
     regionCode = location.getRegionCode
   }
 
-  @When("^I get the ZIP code$")
-  def i_get_the_ZIP_code() {
-    zipCode = location.getZipCode
+  @When("^I get the postal code$")
+  def i_get_the_postal_code() {
+    postalCode = location.getPostalCode
   }
 
   @When("^I get the city")
@@ -70,6 +71,11 @@ class LocationSteps() {
   @When("^I get the street")
   def i_get_the_street() {
     street = location.getStreet
+  }
+
+  @When("^I get the number")
+  def i_get_the_number() {
+    number = location.getNumber
   }
 
   @When("^I get the id$")
@@ -87,9 +93,9 @@ class LocationSteps() {
     assertEquals(arg1, regionCode)
   }
 
-  @Then("^ZIP code should be \"([^\"]*)\"$")
-  def ZIP_code_should_be(arg1: String) {
-    assertEquals(arg1, zipCode)
+  @Then("^postal code should be \"([^\"]*)\"$")
+  def postal_code_should_be(arg1: String) {
+    assertEquals(arg1, postalCode)
   }
 
   @Then("^city should be \"([^\"]*)\"$")
@@ -102,8 +108,13 @@ class LocationSteps() {
     assertEquals(arg1, street)
   }
 
-  @Then("^id should be (-?\\d+)$")
-  def id_should_be(arg1: Int) {
+  @Then("^number should be \"([^\"]*)\"$")
+  def number_should_be(arg1: String) {
+    assertEquals(arg1, number)
+  }
+
+  @Then("^id should be (\\d+)$")
+  def id_should_be(arg1: Long) {
     assertEquals(arg1, id)
   }
 

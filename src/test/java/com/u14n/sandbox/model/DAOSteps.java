@@ -42,12 +42,7 @@ public class DAOSteps {
 
 	@When("^I check for the find by id method$")
 	public void i_check_for_the_find_by_id_method() throws Throwable {
-//		checkMethod("findById", new Class[] { Long.class });
-	}
-
-	@When("^I check for the find by name method$")
-	public void i_check_for_the_find_by_name_method() throws Throwable {
-		checkMethod("findByName", new Class[] { String.class });
+//		checkMethod("findByIdentity", new Class[] { Long.class });
 	}
 
 	@When("^I check for the find all method$")
@@ -74,15 +69,10 @@ public class DAOSteps {
 	@Then("^the find by id method should be defined$")
 	public void the_find_by_id_method_should_be_defined() throws Throwable {
 		try {
-			this.dao.findById(0L);
+			this.dao.findByIdentity(0L);
 		} catch (DAOException e) {
 			// OK
 		}
-	}
-
-	@Then("^the find by name method should be defined$")
-	public void the_find_by_name_method_should_be_defined() throws Throwable {
-		assertEquals(Collections.emptyList(), this.dao.findByName(""));
 	}
 
 	@Then("^the find all method should be defined$")

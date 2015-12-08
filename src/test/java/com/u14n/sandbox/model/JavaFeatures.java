@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
     plugin = { "pretty" },
     glue = "com.u14n.sandbox.model",
     features = {
-        "classpath:com/u14n/sandbox/model/address.feature",
+        "classpath:com/u14n/sandbox/model/geography/address.feature",
         "classpath:com/u14n/sandbox/model/dao.feature"
     },
     tags = {"~@ignore"}

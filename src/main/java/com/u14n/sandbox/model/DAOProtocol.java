@@ -14,37 +14,28 @@ public interface DAOProtocol<T, U> {
 	}
 
 	/**
-	 * @param id
+	 * @param identity
 	 * @return
 	 * @throws DAOException
 	 */
-	default T findById(final U id) throws DAOException {
-		/* trace */ System.out.println("DAOProtocol.findById() id.hashCode()=" + id.hashCode());
+	default T findByIdentity(final U identity) throws DAOException {
+		/* trace */ System.out.println("DAOProtocol.findByIdentity() identity.hashCode()=" + identity.hashCode());
 		List<T> all = findAll();
-		/* trace */ System.out.println("DAOProtocol.findById() all.size()=" + all.size());
+		/* trace */ System.out.println("DAOProtocol.findByIdentity() all.size()=" + all.size());
 		return all.stream()
 				.filter(t -> {
-					/* trace */ System.out.println("DAOProtocol.findById() findAll().stream().filter() t.hashCode()=" + t.hashCode());
-					return t.hashCode() == id.hashCode(); })
+					/* trace */ System.out.println("DAOProtocol.findByIdentity() findAll().stream().filter() t.hashCode()=" + t.hashCode());
+					return t.hashCode() == identity.hashCode(); })
 				.findFirst()
 				.orElseThrow(() -> all.isEmpty()
 					? new DAOException(
 						new RuntimeException(
-							String.format("Not found id %d in %d",
-								id.hashCode(), all.size())))
+							String.format("Not found identity %d in %d",
+								identity.hashCode(), all.size())))
 					: new DAOException(
 						new RuntimeException(
-							String.format("Not found id %d", id.hashCode()),
+							String.format("Not found identity %d", identity.hashCode()),
 							new RuntimeException("Empty"))));
-	}
-
-	/**
-	 * @param name
-	 * @return
-	 * @throws DAOException
-	 */
-	default List<T> findByName(final String name) throws DAOException {
-		return Collections.emptyList();
 	}
 
 	/**

@@ -16,14 +16,14 @@ Feature: Address
     Given I have the Red Hat Headquarters Suite address
     When I get the country code
     And I get the region code
-    And I get the ZIP code
+    And I get the postal code
     And I get the city
     And I get the street
     And I get the id
     Then country code should be "USA"
     And region code should be "NC"
-    And ZIP code should be "27601"
+    And postal code should be "27601"
     And city should be "Raleigh"
     And street should be "100 E Davie St"
-    And id should be 1370790227
+    And id should be 9223372035905594452
     And it should be self-equaling
